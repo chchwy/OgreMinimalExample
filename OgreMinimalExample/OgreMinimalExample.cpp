@@ -56,16 +56,11 @@ void SetupResources()
 	{
 		Ogre::String secName = seci.peekNextKey();
 		Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
-
-		if (secName != "Hlms")
+		for (auto i = settings->begin(); i != settings->end(); ++i)
 		{
-			Ogre::ConfigFile::SettingsMultiMap::iterator i;
-			for (i = settings->begin(); i != settings->end(); ++i)
-			{
-				Ogre::String typeName = i->first;
-				Ogre::String archName = i->second;
-				addResourceLocation(archName, typeName, secName);
-			}
+			Ogre::String typeName = i->first;
+			Ogre::String archName = i->second;
+			addResourceLocation(archName, typeName, secName);
 		}
 	}
 }
@@ -75,12 +70,7 @@ void registerHlms(Ogre::Root* root)
 	Ogre::ConfigFile cf;
 	cf.load("resources2.cfg");
 
-	Ogre::String dataFolder = cf.getSetting("DoNotUseAsResource", "Hlms", "");
-
-	if (dataFolder.empty())
-		dataFolder = "./";
-	else if (*(dataFolder.end() - 1) != '/')
-		dataFolder += "/";
+	Ogre::String dataFolder = "./";
 
 	Ogre::RenderSystem* renderSystem = root->getRenderSystem();
 
@@ -136,8 +126,7 @@ void LoadResources(Ogre::Root* root)
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-Ogre::SceneManager*
-chooseSceneManager(Ogre::Root* root)
+Ogre::SceneManager* chooseSceneManager(Ogre::Root* root)
 {
 	std::string strSceneManagerName = "SceneManager";
 
