@@ -1,3 +1,7 @@
 Debug
 /.vs
 /x64
+
+*.pdb
+*.ilk
+*.exe
