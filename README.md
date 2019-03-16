@@ -1,4 +1,4 @@
 # Ogre v2.1 Minimal Example
 
-A minimal example which has only one cpp file to show initialise Ogre3D engine. Even simpler than built-in samples.
+A minimal "blank window" Ogre3D example which has only 1 cpp file. Even simpler than built-in samples.
 
